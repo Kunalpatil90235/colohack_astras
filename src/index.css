@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Hind:wght@400;500;600&display=swap');
+
+:root {
+  --primary: #FF5A1F; /* Deep Saffron */
+  --primary-glow: rgba(255, 90, 31, 0.3);
+  --secondary: #00B1B0; /* Tropical Teal */
+  --bg-gradient: radial-gradient(circle at top left, #FFF9F5 0%, #F5FAFF 100%);
+  --card-bg: rgba(255, 255, 255, 0.75);
+  --card-border: rgba(255, 255, 255, 0.3);
+  --text: #1A1C1E;
+  --text-muted: #6C727A;
+  --success: #34A853;
+  --font-main: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-hindi: 'Hind', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-main);
+  background: var(--bg-gradient);
+  background-attachment: fixed;
+  color: var(--text);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+.app-container {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 1.5rem;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Glassmorphism Classes */
+.glass-card {
+  background: var(--card-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--card-border);
+  border-radius: 24px;
+  padding: 1.5rem;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+}
+
+.glass-nav {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* Animations */
+@keyframes pulse {
+  0% { transform: scale(1); box-shadow: 0 0 0 0 var(--primary-glow); }
+  70% { transform: scale(1.05); box-shadow: 0 0 0 20px rgba(255, 90, 31, 0); }
+  100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 90, 31, 0); }
+}
+
+.mic-active {
+  animation: pulse 1.5s infinite ease-in-out;
+  background: var(--primary) !important;
+}
+
+/* Typography Enhancements */
+h1 { font-weight: 700; font-size: 1.75rem; color: var(--text); }
+h2 { font-weight: 600; font-size: 1.25rem; color: var(--text); }
+.hindi { font-family: var(--font-hindi); }
+
+/* Custom Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #ddd; border-radius: 10px; }
+
+/* Buttons & Interactions */
+.btn-primary {
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-primary:active { transform: scale(0.95); }
+
+.stat-value { font-size: 1.5rem; font-weight: 700; color: var(--primary); }
+.stat-label { font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
+
+/* Floating Decorations */
+@keyframes float {
+  0% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-15px) rotate(5deg); }
+  100% { transform: translateY(0px) rotate(0deg); }
+}
+
+.floating-decoration {
+  position: fixed;
+  z-index: -1;
+  pointer-events: none;
+  width: 80px;
+  height: 80px;
+  opacity: 0.15;
+  filter: drop-shadow(0 10px 10px rgba(0,0,0,0.1));
+  animation: float 6s infinite ease-in-out;
+}
+
+/* Global Print Utilities */
+@media print {
+  .no-print { display: none !important; }
+  body { background: white !important; margin: 0; padding: 0; }
+  .app-container { max-width: 100% !important; padding: 0 !important; }
+}
